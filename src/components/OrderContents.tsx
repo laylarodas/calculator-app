@@ -12,10 +12,7 @@ export const OrderContents = ({order, removeItem} : OrderContentsProps ) => {
     <div>
         <h2 className='font-black text-4xl'>Order</h2>
         <div className=' space-y-3 mt-8'>
-            {
-                order.length === 0 ? <p className='text-gray-500 text-center'>No order yet</p> 
-                : (
-                    order.map(item => (
+            {order.map(item => (
                         <div key={item.id} className='flex justify-between items-center border-b border-gray-300 p-3'>
                             <p>{item.name} <span className='font-bold'>-</span> {formatCurrency(item.price)} x {item.quantity}</p>
                             <div className='flex justify-end gap-2 items-center text-center'>
@@ -24,7 +21,6 @@ export const OrderContents = ({order, removeItem} : OrderContentsProps ) => {
                             </div>
                         </div>
                     ))
-                )
             }
         </div>
     </div>

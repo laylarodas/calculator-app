@@ -19,11 +19,12 @@ const tipOptions = [
 ]
 
 type TipPercentageFormProps = {
-    setTip: Dispatch<SetStateAction<number>>
+    setTip: Dispatch<SetStateAction<number>>,
+    tip: number
 }
 
 
-export const TipPercentageForm = ({ setTip } : TipPercentageFormProps) => {
+export const TipPercentageForm = ({ setTip, tip } : TipPercentageFormProps) => {
     return (
         <div className="p-3">
             <h3 className="font-bold text-lg">Tip:</h3>
@@ -32,7 +33,7 @@ export const TipPercentageForm = ({ setTip } : TipPercentageFormProps) => {
                 {tipOptions.map(option => (
                     <div key={option.id} className="flex items-center space-x-2">
                         <input type="radio" name="tip" value={option.value} id={option.id} onChange={(e) => setTip(+e.target.value)}// + is a unary operator that converts its operand to a number
-                        />
+                        checked={option.value === tip}/>
                         <label htmlFor={option.id}>{option.label}</label>
 
                     </div>
