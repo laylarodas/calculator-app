@@ -5,6 +5,8 @@ export default function useOrder() {
 
     const [order, setOrder] = useState<OrderItem[]>([]);
 
+    const [tip, setTip] = useState(0);
+
     const addItem = (item: MenuItems) => {
 
 
@@ -13,13 +15,13 @@ export default function useOrder() {
         if (itemExists) {
             const updatedOrder = order.map(orderItem => orderItem.id === item.id ? { ...orderItem, quantity: orderItem.quantity + 1 } : orderItem)
                 
-                
             /*{
                 if (orderItem.id === item.id) {
                     return { ...orderItem, quantity: orderItem.quantity + 1 }
                 }
                 return orderItem
             })*/
+
             setOrder(updatedOrder)
         } else {
 
@@ -36,6 +38,8 @@ export default function useOrder() {
 
     return {
         order,
+        tip,
+        setTip,
         addItem,
         removeItem
     }

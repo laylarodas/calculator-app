@@ -1,3 +1,5 @@
+import type { Dispatch, SetStateAction } from "react"
+
 const tipOptions = [
     {
         id: 'tip-10',
@@ -16,8 +18,12 @@ const tipOptions = [
     },
 ]
 
+type TipPercentageFormProps = {
+    setTip: Dispatch<SetStateAction<number>>
+}
 
-export const TipPercentageForm = () => {
+
+export const TipPercentageForm = ({ setTip } : TipPercentageFormProps) => {
     return (
         <div className="p-3">
             <h3 className="font-bold text-lg">Tip:</h3>
@@ -25,8 +31,10 @@ export const TipPercentageForm = () => {
             <form action="">
                 {tipOptions.map(option => (
                     <div key={option.id} className="flex items-center space-x-2">
-                        <input type="radio" name="tip" value={option.value} id={option.id} />
+                        <input type="radio" name="tip" value={option.value} id={option.id} onChange={(e) => setTip(+e.target.value)}// + is a unary operator that converts its operand to a number
+                        />
                         <label htmlFor={option.id}>{option.label}</label>
+
                     </div>
                 ))}
             </form>
